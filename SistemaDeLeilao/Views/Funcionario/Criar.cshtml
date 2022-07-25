@@ -1,0 +1,69 @@
+﻿@using SistemaDeLeilao.Enums
+@model FuncionarioModel
+@{
+    ViewData["Title"] = "Criar Funcionario";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Cadastrar Funcionario</h1>
+</div>
+
+
+<form asp-controller="Funcionario" asp-action="Criar" method="post">
+
+    <div class="form-group">
+        <label for="nome" class="form-label">Nome</label>
+        <input type="text" asp-for="Nome" class="form-control" placeholder="Digite o nome do usuário">
+        @Html.ValidationMessageFor(x => x.Nome)
+    </div>
+
+    <div class="form-group">
+        <label for="nome" class="form-label">E-mail</label>
+        <input type="text" asp-for="Usuario.Email" class="form-control" placeholder="Digite o e-mail do usuário">
+        @Html.ValidationMessageFor(x => x.Usuario.Email)
+    </div>
+
+    <div class="form-group">
+        <label for="nome" class="form-label">Login</label>
+        <input type="text" asp-for="Usuario.Login" class="form-control" placeholder="Digite o login do usuário">
+        @Html.ValidationMessageFor(x => x.Usuario.Login)
+    </div>
+
+    <div class="form-group">
+        <label for="nome" class="form-label">Perfil</label>
+        <select asp-for="Usuario.Perfil" class="form-control">
+            <option value="">Selecione</option>
+            <option value="@PerfilEnum.Funcionario">Funcionário</option>
+        </select>
+        @Html.ValidationMessageFor(x => x.Usuario.Perfil)
+    </div>
+ 
+    <div class="form-group">
+        <label for="nome" class="form-label">Embarcadores</label>
+        @if (TempData["EmbarcadoresList"] != null)
+        {
+            var embarca = TempData["EmbarcadoresList"] as IEnumerable<dynamic>;
+
+            <select asp-for="Embarcadores.Id" class="form-control">
+                <option value="">Selecione</option>
+                @foreach (var embarcadores in embarca)
+                {
+                    <option value="@embarcadores.Id">@embarcadores.Nome</option>
+                }
+            </select>
+            @Html.ValidationMessageFor(x => x.Embarcadores)
+
+        }
+    </div>
+
+    <div class="form-group">
+        <label for="nome" class="form-label">Senha</label>
+        <input type="password" asp-for="Usuario.Senha" class="form-control" placeholder="Digite a senha do usuário">
+        @Html.ValidationMessageFor(x => x.Usuario.Senha)
+    </div>
+
+
+    <button type="submit" class="btn btn-primary btn-block">Adicionar</button>
+    <a class="btn btn-secondary btn-block" asp-action="Index" asp-controller="Funcionario" role="button">Voltar</a>
+
+</form>

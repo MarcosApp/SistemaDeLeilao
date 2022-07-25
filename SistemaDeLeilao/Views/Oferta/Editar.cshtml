@@ -1,0 +1,41 @@
+﻿@model OfertaModel
+@{
+    ViewData["Title"] = "Criar Oferta";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Editar Oferta</h1>
+</div>
+
+
+<form asp-controller="Oferta" asp-action="Editar" method="post">
+
+    <input type="hidden" asp-for="Id" />
+    <div class="form-group">
+        <label for="nome" class="form-label">Nome</label>
+        <input type="text" asp-for="NomeOferta" class="form-control" placeholder="Digite o nome da oferta">
+        @Html.ValidationMessageFor(x => x.NomeOferta)
+    </div>
+
+    <div class="form-group">
+        <label for="nome" class="form-label">Endereço Entrega</label>
+        <input type="text" asp-for="EnderecoEntrega" class="form-control" placeholder="Digite o endereço da entrega">
+        @Html.ValidationMessageFor(x => x.EnderecoEntrega)
+    </div>
+
+    <div class="form-group">
+        <label for="nome" class="form-label">Endereço Coleta</label>
+        <input type="text" asp-for="EnderecoColeta" class="form-control" placeholder="Digite o endereço da coleta">
+        @Html.ValidationMessageFor(x => x.EnderecoColeta)
+    </div>
+
+    <div class="form-group">
+        <label for="nome" class="form-label">Quantidade</label>
+        <input type="text" asp-for="Quantidade" class="form-control" placeholder="Digite o quantidade da coleta">
+        @Html.ValidationMessageFor(x => x.Quantidade)
+    </div>
+
+    <button type="submit" class="btn btn-primary btn-block">Alterar</button>
+    <a class="btn btn-secondary btn-block" asp-action="Index" asp-controller="Oferta" role="button">Voltar</a>
+
+</form>

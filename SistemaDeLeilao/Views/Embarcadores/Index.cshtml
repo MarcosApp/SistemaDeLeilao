@@ -1,0 +1,74 @@
+﻿@model List<EmbarcadoresModel>
+@{
+    ViewData["Title"] = "Listagem de Embarcadores";
+}
+
+<div class="text-center">
+
+    <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+        <a class="btn btn-primary" asp-controller="Embarcadores" asp-action="Criar" role="button">Adicionar novo embarcador</a>
+    </div>
+
+    <br />
+
+    @if (TempData["MensagemSucesso"] != null)
+    {
+        <div class="alert alert-success" role="alert">
+            <button type="button" class="btn btn-danger btn-sm close-alert" data-bs-dismiss="alert" aria-label="Close">X</button>
+            @TempData["MensagemSucesso"]
+        </div>
+    }
+
+    @if (TempData["MensagemErro"] != null)
+    {
+        <div class="alert alert-danger" role="alert">
+            <button type="button" class="btn btn-danger btn-sm close-alert" data-bs-dismiss="alert" aria-label="Close">X</button>
+            @TempData["MensagemErro"]
+        </div>
+    }
+
+    <br />
+
+    <h1 class="display-4">Listagem de Embarcador</h1>
+
+    <table id="table-Embarcadoress" class="display" style="width:100%">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nome</th>
+                <th scope="col">Login</th>
+                <th scope="col">Email</th>
+                <th scope="col">Perfil</th>
+                <th scope="col">Data de cadastro</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null && Model.Any())
+            {
+                foreach (var Embarcadores in Model)
+                {
+                    <tr>
+                        <th scope="row">@Embarcadores.Id</th>
+                        <td>@Embarcadores.Nome</td>
+                        <td>@Embarcadores.Usuario.Login</td>
+                        <td>@Embarcadores.Usuario.Email</td>
+                        <td>@(Embarcadores.Usuario.Perfil == SistemaDeLeilao.Enums.PerfilEnum.Admin ? "Administrador" : "Embarcador")</td>
+                        <td>@Embarcadores.DataCadastro</td>
+                        <td>
+                            <div class="btn-group" role="group">
+                                <a role="button" asp-action="Editar" asp-controller="Embarcadores" asp-route-id="@Embarcadores.Id" class="btn btn-primary">Editar</a>
+                                <a role="button" asp-action="ApagarConfirmacao" asp-controller="Embarcadores" asp-route-id="@Embarcadores.Id" class="btn btn-danger">Apagar</a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr class="odd"><td valign="top" colspan="5">Nenhum usuário encontrado</td></tr>
+            }
+        </tbody>
+    </table>
+
+</div>

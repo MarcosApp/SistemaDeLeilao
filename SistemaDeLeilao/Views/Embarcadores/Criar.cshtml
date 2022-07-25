@@ -1,0 +1,56 @@
+﻿@using SistemaDeLeilao.Enums
+@model EmbarcadoresModel
+@{
+    ViewData["Title"] = "Criar usuário";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Cadastrar Embarcador</h1>
+</div>
+
+
+<form asp-controller="Embarcadores" asp-action="Criar" method="post">
+
+    <div class="form-group">
+        <label for="nome" class="form-label">Nome</label>
+        <input type="text" asp-for="Nome" class="form-control" placeholder="Digite o nome do usuário">
+        @Html.ValidationMessageFor(x => x.Nome)
+    </div>
+
+    <div class="form-group">
+        <label for="nome" class="form-label">E-mail</label>
+        <input type="text" asp-for="Usuario.Email" class="form-control" placeholder="Digite o e-mail do usuário">
+        @Html.ValidationMessageFor(x => x.Usuario.Email)
+    </div>
+
+    <div class="form-group">
+        <label for="nome" class="form-label">Login</label>
+        <input type="text" asp-for="Usuario.Login" class="form-control" placeholder="Digite o login do usuário">
+        @Html.ValidationMessageFor(x => x.Usuario.Login)
+    </div>
+
+    <div class="form-group">
+        <label for="nome" class="form-label">Perfil</label>
+        <select asp-for="Usuario.Perfil" class="form-control">
+            <option value="">Selecione</option>
+            <option value="@PerfilEnum.Embarcadores">Embarcador</option>
+        </select>
+        @Html.ValidationMessageFor(x => x.Usuario.Perfil)
+    </div>
+    <div class="form-group">
+        <label for="nome" class="form-label">Transportador</label>
+        <select asp-for="SelectedTransportadorIds" asp-items="ViewBag.Lista"
+                class="form-control" multiple="multiple">
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="nome" class="form-label">Senha</label>
+        <input type="password" asp-for="Usuario.Senha" class="form-control" placeholder="Digite a senha do usuário">
+        @Html.ValidationMessageFor(x => x.Usuario.Senha)
+    </div>
+
+    <button type="submit" class="btn btn-primary btn-block">Adicionar</button>
+    <a class="btn btn-secondary btn-block" asp-action="Index" asp-controller="Embarcadores" role="button">Voltar</a>
+
+</form>

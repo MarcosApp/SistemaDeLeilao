@@ -1,0 +1,69 @@
+﻿@using SistemaDeLeilao.Enums
+@model TransportadorModel
+@{
+    ViewData["Title"] = "Criar Transportador";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Cadastrar Transportador</h1>
+</div>
+
+
+<form asp-controller="Transportadores" asp-action="Criar" method="post">
+
+    <div class="form-group">
+        <label for="nome" class="form-label">Nome</label>
+        <input type="text" asp-for="Nome" class="form-control" placeholder="Digite o nome do transportador">
+        @Html.ValidationMessageFor(x => x.Nome)
+    </div>
+
+    <div class="form-group">
+        <label for="nome" class="form-label">E-mail</label>
+        <input type="text" asp-for="Usuario.Email" class="form-control" placeholder="Digite o e-mail do transportador">
+        @Html.ValidationMessageFor(x => x.Usuario.Email)
+    </div>
+
+    <div class="form-group">
+        <label for="nome" class="form-label">Login</label>
+        <input type="text" asp-for="Usuario.Login" class="form-control" placeholder="Digite o login do transportador">
+        @Html.ValidationMessageFor(x => x.Usuario.Login)
+    </div>
+
+    <div class="form-group">
+        <label for="nome" class="form-label">Local</label>
+        <input type="text" asp-for="Local" class="form-control" placeholder="Digite o local do transportador">
+        @Html.ValidationMessageFor(x => x.Local)
+    </div>
+
+
+    <div class="form-group">
+        <label for="nome" class="form-label">Cidade</label>
+        <input type="text" asp-for="Cidade" class="form-control" placeholder="Digite o cidade do transportador">
+        @Html.ValidationMessageFor(x => x.Cidade)
+    </div>
+
+    <div class="form-group">
+        <label for="nome" class="form-label">Perfil</label>
+        <select asp-for="Usuario.Perfil" class="form-control">
+            <option value="">Selecione</option>
+            <option value="@PerfilEnum.Transportadora">Transportadora</option>
+        </select>
+        @Html.ValidationMessageFor(x => x.Usuario.Perfil)
+    </div>
+    <div class="form-group">
+        <label for="nome" class="form-label">Embarcador</label>
+        <select asp-for="SelectedEmbarcadoresIds" asp-items="ViewBag.Lista"
+                class="form-control" multiple="multiple">
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="nome" class="form-label">Senha</label>
+        <input type="password" asp-for="Usuario.Senha" class="form-control" placeholder="Digite a senha do usuário">
+        @Html.ValidationMessageFor(x => x.Usuario.Senha)
+    </div>
+
+    <button type="submit" class="btn btn-primary btn-block">Adicionar</button>
+    <a class="btn btn-secondary btn-block" asp-action="Index" asp-controller="Transportadores" role="button">Voltar</a>
+
+</form>

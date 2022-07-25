@@ -1,0 +1,57 @@
+﻿@using SistemaDeLeilao.Enums
+@model LanceModel
+@{
+    ViewData["Title"] = "Editar usuário";
+}
+<div class="text-center">
+    <h1 class="display-4">Dar Lance</h1>
+</div>
+@if (TempData["MensagemErro"] != null)
+{
+    <div class="alert alert-danger" role="alert">
+        <button type="button" class="btn btn-danger btn-sm close-alert" data-bs-dismiss="alert" aria-label="Close">X</button>
+        @TempData["MensagemErro"]
+    </div>
+}
+<form asp-controller="Lance" asp-action="Criar" method="post">
+
+    <input type="hidden" asp-for="Id" />
+
+    <div class="form-group">
+        <label for="nome" class="form-label">NomeOferta</label>
+        <input type="text" asp-for="Oferta.NomeOferta" class="form-control" disabled>
+        @Html.ValidationMessageFor(x => x.Oferta.NomeOferta)
+    </div>
+    <div class="form-group">
+        <label for="nome" class="form-label">Endereço da Coleta</label>
+        <input type="text" asp-for="Oferta.EnderecoColeta" class="form-control" disabled>
+        @Html.ValidationMessageFor(x => x.Oferta.EnderecoColeta)
+    </div>
+
+    <div class="form-group">
+        <label for="nome" class="form-label">Endereço da Entrega</label>
+        <input type="text" asp-for="Oferta.EnderecoEntrega" class="form-control" disabled>
+        @Html.ValidationMessageFor(x => x.Oferta.EnderecoEntrega)
+    </div>
+
+    <div class="form-group">
+        <label for="nome" class="form-label">Quantidade de Entrega</label>
+        <input type="number" asp-for="Oferta.Quantidade" class="form-control" disabled>
+        @Html.ValidationMessageFor(x => x.Oferta.Quantidade)
+    </div>
+
+
+    <div class="form-group">
+        <label for="nome" class="form-label">Digite a quantidade do lance</label>
+        <input type="number" asp-for="Quantidade" class="form-control" placeholder="Digite a quantidade do lance">
+        @Html.ValidationMessageFor(x => x.Quantidade)
+    </div>
+
+    <div class="form-group">
+        <label for="nome" class="form-label">Preço: R$</label>
+        <input type="text" asp-for="Preco" class="form-control" placeholder="Digite o valor do lance">
+        @Html.ValidationMessageFor(x => x.Preco)
+    </div>
+    
+    <button type="submit" class="btn btn-primary btn-block">Dar Lance</button>
+</form>

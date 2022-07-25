@@ -1,0 +1,120 @@
+﻿@model List<OfertaViewModel>
+@{
+    ViewData["Title"] = "Listagem de Oferta";
+}
+
+<div class="text-center">
+
+    @if (ViewBag.Perfil == SistemaDeLeilao.Enums.PerfilEnum.Admin || ViewBag.Perfil == SistemaDeLeilao.Enums.PerfilEnum.Funcionario)
+    {
+        <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+            <a class="btn btn-primary" asp-controller="Oferta" asp-action="Criar" role="button">Adicionar nova oferta</a>
+        </div>
+    }
+
+    <br />
+
+    @if (TempData["MensagemSucesso"] != null)
+    {
+        <div class="alert alert-success" role="alert">
+            <button type="button" class="btn btn-danger btn-sm close-alert" data-bs-dismiss="alert" aria-label="Close">X</button>
+            @TempData["MensagemSucesso"]
+        </div>
+    }
+
+    @if (TempData["MensagemErro"] != null)
+    {
+        <div class="alert alert-danger" role="alert">
+            <button type="button" class="btn btn-danger btn-sm close-alert" data-bs-dismiss="alert" aria-label="Close">X</button>
+            @TempData["MensagemErro"]
+        </div>
+    }
+
+    <br />
+
+    <h1 class="display-4">Listagem de Oferta</h1>
+
+    <table id="table-Oferta" class="display" style="width:100%">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">#</th>
+                <th scope="col">Nome da Oferta</th>
+                <th scope="col">Endereço da Coleta</th>
+                <th scope="col">Endereço da Entrega</th>
+                <th scope="col">Quantidade</th>
+                @if (ViewBag.Perfil == SistemaDeLeilao.Enums.PerfilEnum.Admin || ViewBag.Perfil == SistemaDeLeilao.Enums.PerfilEnum.Funcionario)
+                {
+                    <th scope="col"></th>
+                }
+                else if (ViewBag.Perfil == SistemaDeLeilao.Enums.PerfilEnum.Transportadora)
+                {
+                    <th scope="col">Status</th>
+                }
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null && Model.Any())
+            {
+                foreach (var Oferta in Model)
+                {
+            <tr>
+                <th scope="row">@Oferta.Id</th>
+                <th scope="row">
+                    <img src="~/Imagem/rota.png" width="50" height="50" />
+                </th>
+                <td>@Oferta.NomeOferta</td>
+                <td>@Oferta.EnderecoColeta</td>
+                <td>@Oferta.EnderecoEntrega</td>
+                <td>@Oferta.Quantidade</td>
+                @if (ViewBag.Perfil == SistemaDeLeilao.Enums.PerfilEnum.Admin || ViewBag.Perfil == SistemaDeLeilao.Enums.PerfilEnum.Funcionario)
+                {
+                    <td>
+                        <div class="btn-group" role="group">
+                            <a role="button" asp-action="Editar" asp-controller="Oferta" asp-route-id="@Oferta.Id" class="btn btn-primary">Editar</a>
+                            <a role="button" asp-action="ApagarConfirmacao" asp-controller="Oferta" asp-route-id="@Oferta.Id" class="btn btn-danger">Apagar</a>
+                        </div>
+                    </td>
+                }
+                else if (ViewBag.Perfil == SistemaDeLeilao.Enums.PerfilEnum.Transportadora)
+                {
+                    @if (Oferta.Lance.Status == null)
+                    {
+                        <td>
+                            <div class="btn-group" role="group">
+                                <a role="button" asp-action="RealizarLance" asp-controller="Lance" asp-route-id="@Oferta.Id" class="btn btn-primary">Dar Lance</a>
+                            </div>
+                        </td>
+                    }
+                    else
+                    {
+                        <td>
+                            <div class="btn-group" role="group">
+                                @if (Oferta.Lance.Status == SistemaDeLeilao.Enums.LanceEnum.EmAnalise)
+                                {
+                                    <span class="badge badge-primary">Em análise</span>
+                                }
+                                else if (Oferta.Lance.Status == SistemaDeLeilao.Enums.LanceEnum.Leiloado)
+                                {
+                                    <span class="badge badge-success">Leiloado</span>
+                                }
+                                else
+                                {
+                                    <span class="badge badge-secondary">Recusado</span>
+                                }
+                            </div>
+                        </td>
+                    }
+
+                }
+            </tr>
+                }
+            }
+            else
+            {
+                <tr class="odd"><td valign="top" colspan="5">Nenhuma Oferta encontrado</td></tr>
+            }
+        </tbody>
+    </table>
+
+</div>

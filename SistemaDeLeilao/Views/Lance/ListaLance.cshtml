@@ -1,0 +1,81 @@
+﻿@using SistemaDeLeilao.Enums
+@model List<LanceModel>
+@{
+    ViewData["Title"] = "Editar usuário";
+}
+<div class="text-center">
+    <h1 class="display-4">Dar Lance</h1>
+</div>
+@if (TempData["MensagemErro"] != null)
+{
+    <div class="alert alert-danger" role="alert">
+        <button type="button" class="btn btn-danger btn-sm close-alert" data-bs-dismiss="alert" aria-label="Close">X</button>
+        @TempData["MensagemErro"]
+    </div>
+}
+<h1 class="display-4">Listagem de Lances</h1>
+
+<table id="table-Oferta" class="display" style="width:100%">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nome do Lance</th>
+            <th scope="col">Embarcador da Entrega</th>
+            <th scope="col">Quantidade do Transportador</th>
+            <th scope="col">Preço do Transportador</th>
+            <th scope="col">Ação</th>
+            <th scope="col">Status</th>
+           
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null && Model.Any())
+        {
+            foreach (var Oferta in Model)
+            {
+        <tr>
+            <th scope="row">@Oferta.Id</th>
+            <td>@Oferta.Oferta.NomeOferta</td>
+            <td>@Oferta.Transportador.Nome</td>
+            <td>@Oferta.Quantidade</td>
+            <td>@Oferta.Preco</td>
+            @if (Oferta.Status == LanceEnum.EmAnalise || Oferta.Status == LanceEnum.Recusado)
+            {
+                <td>
+                    <a role="button" asp-action="Aprovar" asp-controller="Lance" asp-route-id="@Oferta.Id" class="btn btn-primary">Aprovar</a>
+                </td>
+            }
+            else
+            {
+                <td>
+                    <a role="button" asp-action="Recusar" asp-controller="Lance" asp-route-id="@Oferta.Id" class="btn btn-danger">Recusar</a>
+                </td>
+            }
+
+            @if (Oferta.Status == LanceEnum.Leiloado)
+            {
+                <td>
+                    <span class="badge badge-success">Leiloado</span>
+                </td>
+            }
+            else if (Oferta.Status == LanceEnum.EmAnalise)
+            {
+                <td>
+                    <span class="badge badge-primary">Em análise</span>
+                </td>
+            }
+            else
+            {
+                <td>
+                    <span class="badge badge-secondary">Recusado</span>
+                </td>
+            }
+        </tr>
+            }
+        }
+        else
+        {
+            <tr class="odd"><td valign="top" colspan="5">Nenhuma Lance encontrado</td></tr>
+        }
+    </tbody>
+</table>
