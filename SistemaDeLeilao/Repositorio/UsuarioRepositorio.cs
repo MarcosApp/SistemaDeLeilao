@@ -55,7 +55,6 @@ namespace SistemaDeLeilao.Repositorio
             UsuarioModel usuarios = BuscarPorID(id);
 
             if (usuarios == null) return false;
-
             _context.Usuario.Remove(usuarios);
             _context.SaveChanges();
             return true;

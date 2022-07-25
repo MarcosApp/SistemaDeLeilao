@@ -10,7 +10,7 @@ using SistemaDeLeilao.Data;
 namespace SistemaDeLeilao.Migrations
 {
     [DbContext(typeof(BancoContent))]
-    [Migration("20220724185555_CriacaoTabela")]
+    [Migration("20220725011644_CriacaoTabela")]
     partial class CriacaoTabela
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -104,13 +104,13 @@ namespace SistemaDeLeilao.Migrations
                     b.Property<int?>("OfertaId")
                         .HasColumnType("int");
 
-                    b.Property<double>("Preco")
+                    b.Property<double?>("Preco")
                         .HasColumnType("float");
 
                     b.Property<int>("Quantidade")
                         .HasColumnType("int");
 
-                    b.Property<int>("Status")
+                    b.Property<int?>("Status")
                         .HasColumnType("int");
 
                     b.Property<int?>("TransportadorId")

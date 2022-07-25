@@ -102,13 +102,13 @@ namespace SistemaDeLeilao.Migrations
                     b.Property<int?>("OfertaId")
                         .HasColumnType("int");
 
-                    b.Property<double>("Preco")
+                    b.Property<double?>("Preco")
                         .HasColumnType("float");
 
                     b.Property<int>("Quantidade")
                         .HasColumnType("int");
 
-                    b.Property<int>("Status")
+                    b.Property<int?>("Status")
                         .HasColumnType("int");
 
                     b.Property<int?>("TransportadorId")

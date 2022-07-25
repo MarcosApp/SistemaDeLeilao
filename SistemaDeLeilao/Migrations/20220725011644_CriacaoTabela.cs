@@ -161,10 +161,10 @@ namespace SistemaDeLeilao.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Quantidade = table.Column<int>(type: "int", nullable: false),
-                    Preco = table.Column<double>(type: "float", nullable: false),
+                    Preco = table.Column<double>(type: "float", nullable: true),
                     TransportadorId = table.Column<int>(type: "int", nullable: true),
                     OfertaId = table.Column<int>(type: "int", nullable: true),
-                    Status = table.Column<int>(type: "int", nullable: false)
+                    Status = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {

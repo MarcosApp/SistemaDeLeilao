@@ -80,7 +80,7 @@ namespace SistemaDeLeilao.Repositorio
         {
             FuncionarioModel FuncionarioDB = BuscarPorID(id);
 
-            if (FuncionarioDB == null) throw new Exception("Houve um erro na deleção do Funcionario!");
+            if (FuncionarioDB == null) return false;
 
             _context.Usuario.Remove(FuncionarioDB.Usuario);
             _context.Funcionarios.Remove(FuncionarioDB);
