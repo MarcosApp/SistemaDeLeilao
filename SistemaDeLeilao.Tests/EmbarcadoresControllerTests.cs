@@ -3,6 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 using SistemaDeLeilao.Data;
 using SistemaDeLeilao.Models;
 using SistemaDeLeilao.Repositorio;
+using System.Threading;
 using Xunit;
 
 namespace SistemaLeilao.Tests
@@ -59,6 +60,7 @@ namespace SistemaLeilao.Tests
         [Fact]
         public void EmbarcadoresControllerTests_ReturnTrue_Apagar()
         {
+            Thread.Sleep(100);
             var dados = _EmbarcadoresRepositorio.BuscarTodos();
             int correto = dados[dados.Count - 1].Id;
             var apagar = _EmbarcadoresRepositorio.Apagar(correto);
