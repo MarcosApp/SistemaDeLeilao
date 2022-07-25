@@ -25,6 +25,9 @@ Windows:
   - Visualiza e Aprova Lances
   - Lista / Criar Funcionário / Deleta Funcionário / Edita Funcionário
   - Lista Transportador / Criar Transportador / Deleta Transportador / Edita Transportador
+##
+- Funcionario
+  - Cria lance de suas embarcadoras
 ##  
 - Transportador
     - Visualiza Status Lance / Dar Lance
