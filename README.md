@@ -5,7 +5,6 @@ Teste Dev System
 Windows:
 
 ```
-```sh
 >  Visual Studio: 
   Update-Database
 >  CLI Net: 
