@@ -10,7 +10,7 @@ using SistemaDeLeilao.Data;
 namespace SistemaDeLeilao.Migrations
 {
     [DbContext(typeof(BancoContent))]
-    [Migration("20220725011644_CriacaoTabela")]
+    [Migration("20220725014751_CriacaoTabela")]
     partial class CriacaoTabela
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -221,6 +221,17 @@ namespace SistemaDeLeilao.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Usuario");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            DataCadastro = new DateTime(2022, 7, 24, 22, 47, 50, 946, DateTimeKind.Local).AddTicks(4866),
+                            Email = "admin@yahoo.com",
+                            Login = "admin",
+                            Perfil = 1,
+                            Senha = "97fcc7c4f1df18696b23ef9a44efc36482e9e51a"
+                        });
                 });
 
             modelBuilder.Entity("EmbarcadoresModelTransportadorModel", b =>

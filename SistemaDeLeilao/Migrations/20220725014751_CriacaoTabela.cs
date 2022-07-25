@@ -183,6 +183,11 @@ namespace SistemaDeLeilao.Migrations
                         onDelete: ReferentialAction.Restrict);
                 });
 
+            migrationBuilder.InsertData(
+                table: "Usuario",
+                columns: new[] { "Id", "DataAtualizacao", "DataCadastro", "Email", "Login", "Perfil", "Senha" },
+                values: new object[] { 1, null, new DateTime(2022, 7, 24, 22, 47, 50, 946, DateTimeKind.Local).AddTicks(4866), "admin@yahoo.com", "admin", 1, "d033e22ae348aeb5660fc2140aec35850c4da997" });
+
             migrationBuilder.CreateIndex(
                 name: "IX_Embarcadores_UsuarioId",
                 table: "Embarcadores",
