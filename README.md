@@ -4,12 +4,6 @@ Teste Dev System
 
 Windows:
 
-```sh
-> Visual Studio: 
-  Add-Migration CriacaoTabela -Context BancoContent 
-  
-> CLI Net: 
-  dotnet ef migrations add CriacaoTabela
 ```
 ```sh
 >  Visual Studio: 
@@ -18,6 +12,24 @@ Windows:
   dotnet ef database update
 
 ```
+
+
+##  Login inicial
+- Login: admin
+- Senha: admin
+##
+
+- Admin - Faz Tudo
+##
+- Embarcador
+  - Visualiza e Aprova Lances
+  - Lista / Criar Funcionário / Deleta Funcionário / Edita Funcionário
+  - Lista Transportador / Criar Transportador / Deleta Transportador / Edita Transportador
+##  
+- Transportador
+    - Visualiza Status Lance / Dar Lance
+
+ 
 
 
 
